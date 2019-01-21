@@ -1,0 +1,13 @@
+address = "localhost"
+port = 8080
+
+postgres = {
+  dataSourceClass = "slick.jdbc.DatabaseUrlDataSource"
+  properties = {
+    driver = "org.postgresql.Driver"
+    url = "postgres://postgres:root@localhost:5432/trip"
+  }
+  numThreads = 16
+}
+
+liquibase.changelog = "main_migration.xml"

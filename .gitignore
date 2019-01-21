@@ -1,0 +1,6 @@
+/.idea/
+target/
+/src/main/resources/application.conf
+sbt-dist
+sbt
+sbt.bat

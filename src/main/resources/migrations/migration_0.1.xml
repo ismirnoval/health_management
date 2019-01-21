@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="create Table DrugReserve" author="ismirnov">
+        <createTable tableName="DrugReserve">
+            <column name="id" type="varchar(32)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="receiptDate" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expiryDate" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dosage" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="create Table Cause" author="ismirnov">
+        <createTable tableName="Cause">
+            <column name="id" type="varchar(32)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="create Table UsedDrugs" author="ismirnov">
+        <createTable tableName="UsedDrugs">
+            <column name="id" type="varchar(32)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="dateInjection" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="drugId" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="causeId" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="UsedDrugs" baseColumnNames="causeId" constraintName="UsedDrugs_causeId_Cause_id_FK" referencedTableName="Cause"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="UsedDrugs" baseColumnNames="drugId" constraintName="UsedDrugs_drugId_DrugReserve_id_FK" referencedTableName="DrugReserve"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>
