@@ -1,8 +1,8 @@
-package com.akka_http_reactJS.db.entities
+package com.drug.db.entities
 
 import java.sql.Timestamp
 
-import com.akka_http_reactJS.db.CustomPostgresProfile.api._
+import com.drug.db.CustomPostgresProfile.api._
 import slick.lifted.TableQuery
 
 import scala.concurrent.Future
@@ -30,7 +30,7 @@ trait UsedDrugsService {
 
 object UsedDrugsServiceImpl extends UsedDrugsService {
   import UsedDrugsTableComponent._
-  import com.akka_http_reactJS.main.Config.{ db, executionContext }
+  import com.drug.main.Config.{ db, executionContext }
 
   override def save(
     id: String,

@@ -1,10 +1,10 @@
-package com.akka_http_reactJS.db.changelog
+package com.drug.db.changelog
 
 import java.sql.Connection
 
 import akka.actor.ActorSystem
-import com.akka_http_reactJS.db.IOUtils
-import com.akka_http_reactJS.main.Config.db
+import com.drug.db.IOUtils
+import com.drug.main.Config.db
 import com.typesafe.config.ConfigFactory
 import liquibase.Liquibase
 import liquibase.database.jvm.JdbcConnection

@@ -1,21 +1,19 @@
 package com.akka_http_reactJS.main
 
-import akka.actor.{ActorRef, ActorSystem}
+import akka.actor.ActorSystem
 import akka.event.Logging
+import akka.http.scaladsl.model.{ ContentTypes, HttpEntity }
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
-import akka.http.scaladsl.server.directives.MethodDirectives.{get, post}
+import akka.http.scaladsl.server.directives.MethodDirectives.get
 import akka.http.scaladsl.server.directives.PathDirectives.path
 import akka.http.scaladsl.server.directives.RouteDirectives.complete
 import akka.util.Timeout
-import akka.http.scaladsl.model.{ContentTypes, HttpEntity, StatusCodes}
-import com.akka_http_reactJS.db.entities.{DrugReserve, DrugReserveServiceImpl}
+import com.drug.db.entities.DrugReserveServiceImpl
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
-import Config._
-import akka.http.scaladsl.model.StatusCodes
-
-import scala.util.parsing.json.{JSON, JSONArray}
+import scala.util.parsing.json.JSON
 
 //#user-routes-class
 trait UserRoutes {
@@ -31,7 +29,7 @@ trait UserRoutes {
 
   //#all-routes
   //#users-get-post
-  //#users-get-delete   
+  //#users-get-delete
   lazy val userRoutes: Route =
     pathPrefix("drugs") {
       concat(
@@ -45,8 +43,9 @@ trait UserRoutes {
                   lostThings <- lostThingsF
                 } yield (lostThings)
               }
-              onSuccess(thingsF) { case (lost) =>
-                complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, JSON(lost)))
+              onSuccess(thingsF) {
+                case (lost) =>
+                  complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, lost.mkString(", ")))
               }
             }
           )

@@ -1,4 +1,4 @@
-package com.akka_http_reactJS.main
+package com.drug.main
 
 import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer

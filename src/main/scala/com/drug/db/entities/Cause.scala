@@ -1,6 +1,6 @@
-package com.akka_http_reactJS.db.entities
+package com.drug.db.entities
 
-import com.akka_http_reactJS.db.CustomPostgresProfile.api._
+import com.drug.db.CustomPostgresProfile.api._
 import slick.lifted.TableQuery
 
 import scala.concurrent.Future
@@ -17,7 +17,7 @@ trait CauseService {
 
 object CauseServiceImpl extends CauseService {
   import CauseTableComponent._
-  import com.akka_http_reactJS.main.Config.{ db, executionContext }
+  import com.drug.main.Config.{ db, executionContext }
 
   override def save(id: String, name: String, description: String): Future[Cause] = {
     val cause = Cause(id, name, description)

@@ -1,4 +1,4 @@
-package com.akka_http_reactJS.db
+package com.drug.db
 
 import java.io._
 import java.util.zip.{ ZipEntry, ZipInputStream, ZipOutputStream }

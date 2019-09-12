@@ -1,15 +1,16 @@
-package com.akka_http_reactJS.main
+package com.drug.main
 
 //#quick-start-server
-import scala.concurrent.Await
-import scala.concurrent.duration.Duration
-import akka.actor.{ ActorRef, ActorSystem }
+import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.Route
 import akka.stream.ActorMaterializer
-import com.akka_http_reactJS.db.changelog.LiquibasePlugin
+import com.akka_http_reactJS.main.UserRoutes
+import com.drug.db.changelog.LiquibasePlugin
 
+import scala.concurrent.Await
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.duration.Duration
 import scala.io.StdIn
 
 //#main-class
